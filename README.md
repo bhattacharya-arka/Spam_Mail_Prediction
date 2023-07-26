@@ -57,14 +57,14 @@ cd Spam_Mail_Prediction/Web\ App
 ### Step 2: Install Requirements
 
 ```bash
-pip install flask
-pip install pickle
+pip3 install flask
+pip3 install pickle
 ```
 
 ### Step 3: Run the Flask App
 
 ```bash
-python app.py
+python3 app.py
 ```
 
 ### Step 4: Access the Web App at http://localhost:5000
