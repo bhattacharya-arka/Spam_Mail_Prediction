@@ -45,7 +45,7 @@
 
 
 
-## Setting Up Email Spam Prediction Web App
+## Setting Up Email Spam Prediction Web App(On macOS)
 
 ### Step 1: Clone the Repository
 
@@ -65,6 +65,27 @@ pip3 install pickle
 
 ```bash
 python3 app.py
+```
+## Setting Up Email Spam Prediction Web App(On Windows)
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/bhattacharya-arka/Spam_Mail_Prediction.git
+cd Spam_Mail_Prediction/Web\ App
+```
+
+### Step 2: Install Requirements
+
+```bash
+pip install flask
+pip install pickle
+```
+
+### Step 3: Run the Flask App
+
+```bash
+python app.py
 ```
 
 ### Step 4: Access the Web App at http://localhost:5000
