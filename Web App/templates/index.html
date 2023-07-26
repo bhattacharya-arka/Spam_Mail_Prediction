@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title>Email Spam Detection</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   text-align: center;
+   margin: 30px;
+   background-image: radial-gradient(circle at 10% 20%,
+     rgb(69, 86, 102) 0%,
+     rgb(34, 34, 34) 90%);
+   height: 100vh;
+   overflow-y: hidden;
+  }
+
+  h1 {
+   color: #fff;
+   font-size: 4.5rem;
+  }
+
+  textarea {
+   margin-top: 50px;
+   width: 70%;
+   height: 150px;
+   padding: 10px;
+   resize: none;
+   border-radius: 15px;
+   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
+   background: radial-gradient(
+    circle at 7.5% 24%,
+    rgb(237, 161, 193) 0%,
+    rgb(250, 178, 172) 25.5%,
+    rgb(190, 228, 210) 62.3%,
+    rgb(215, 248, 247) 93.8%
+  );
+  }
+
+  button {
+   margin-top: 50px;
+   padding: 10px 20px;
+   font-size: 16px;
+   cursor: pointer;
+   border: none;
+   border-radius: 5px;
+   background-color: rgb(5, 129, 212);
+  }
+
+  #result {
+   margin-top: 50px;
+   font-size: 20px;
+   font-weight: bold;
+   border-radius: 15px;
+   height: 150px;
+   width: 250px;
+   margin-left: auto;
+   margin-right: auto;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#666, #333);
+   font-size: 4.5rem;
+   color: #ffffff;
+  }
+ </style>
+</head>
+
+<body>
+ <h1>Email Spam Detection</h1>
+ <form id="spamForm">
+  <textarea id="emailText" placeholder="Enter your email text here..."></textarea>
+  <br>
+  <button type="button" onclick="predictSpam()">Check for Spam</button>
+ </form>
+ <div id="result"></div>
+
+ <script>
+  function predictSpam() {
+   const emailText = document.getElementById('emailText').value;
+   const jsonData = { "text": emailText };
+
+   fetch('/predict', {
+    method: 'POST',
+    headers: {
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(jsonData)
+   })
+    .then(response => response.json())
+    .then(data => {
+     if (data.error) {
+      document.getElementById('result').innerText = "Error";
+     } else {
+      document.getElementById('result').innerText = data.prediction;
+     }
+    })
+    .catch(error => {
+     document.getElementById('result').innerText = "Error";
+    });
+  }
+ </script>
+</body>
+
+</html>
